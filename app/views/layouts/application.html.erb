@@ -8,7 +8,26 @@
 </head>
 <body>
 
+<% if flash.any? %>
+  <ul>
+  <% flash.each do |msg|  %>
+    <li><%= msg  %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= yield %>
+<%= debug(params)  %>
+
+<h2>Current Login Status</h2>
+<% if signed_in?  %>
+  현재 로그인된 상태입니다.
+  <%= link_to "로그아웃", signout_path, method: :delete  %>
+<% else %>
+  현재 로그인되지 않은 상태입니다.
+  <%= link_to "로그인", signin_path  %>
+<% end %>
+
 
 </body>
 </html>

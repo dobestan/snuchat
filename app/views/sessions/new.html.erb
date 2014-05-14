@@ -1,0 +1,16 @@
+<h1>Sign In</h1>
+<%= form_for :session, url: sessions_path do |f| %>
+  <div>
+  <%= f.label :mysnu  %><br />
+  <%= f.text_field :mysnu  %>@snu.ac.kr
+  </div>
+
+  <div>
+  <%= f.label :password  %><br />
+  <%= f.password_field :password  %>
+  </div>
+
+  <div>
+  <%= f.submit  %>
+  </div>
+<% end %>

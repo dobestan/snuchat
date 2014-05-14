@@ -1,0 +1,15 @@
+<h1>Profile</h1>
+<ul>
+<li>name : <%= @user.name  %></li>
+<li>mysnu : <%= @user.mysnu  %></li>
+<li>password_digest : <%= @user.password_digest  %></li>
+<li>activation_token : <%= @user.activation_token  %></li>
+<li>remember_token : <%= @user.remember_token  %></li>
+</ul>
+
+<% if !@user.active %>
+  이메일 인증을 확인하세요.
+  <%= link_to "재발송", resend_activation_email_path, method: :post  %>
+<% else %>
+  이메일 인증이 완료되었습니다.
+<% end %>
