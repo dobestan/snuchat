@@ -1,4 +1,38 @@
 Rails.application.routes.draw do
+
+  # Main Pages ( Welcome Controller )
+  root 'welcome#index'
+  match '/about', to: 'welcome#about', via: 'get'
+  match '/help', to: 'welcome#help', via: 'get'
+
+  # Session Management
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  # Activation ( Email Varification )
+  match '/activate/:activation_token', to: 'users#activate_user', via: 'get', as: 'activate'
+  match '/resend_activation_email', to: 'users#resend_activation_email', via: 'post'
+
+  # Profile
+  match '/profile', to: 'users#show', via: 'get'
+
+  # Edit Profiles
+  match '/profile/edit', to: 'users#edit', via: 'get'
+  match '/profile/edit', to: 'users#update', via: 'post'
+
+  match '/profile/edit/email', to: 'users#edit_email', via: 'get'
+  match '/profile/edit/email', to: 'users#update_email', via: 'post'
+
+  match '/profile/edit/password', to: 'users#edit_password', via: 'get'
+  match '/profile/edit/password', to: 'users#update_password', via: 'post'
+
+  match '/forgot_password', to: 'users#forgot_password', via: 'get'
+  match '/reset_password', to: 'users#reset_password', via: 'post'
+
+  resources :users, only: [:index, :create]
+  resources :sessions, only: [:create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

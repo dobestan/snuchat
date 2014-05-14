@@ -1,0 +1,35 @@
+<h1>회원가입</h1>
+
+<% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg  %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <div>
+  <%= f.label :name  %><br />
+  <%= f.text_field :name  %>
+  </div>
+
+  <div>
+  <%= f.label :mysnu  %><br />
+  <%= f.text_field :mysnu  %>@snu.ac.kr
+  </div>
+
+  <div>
+  <%= f.label :password  %><br />
+  <%= f.password_field :password  %>
+  </div>
+
+  <div>
+  <%= f.label :password_confirmation  %><br />
+  <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.submit "Sign Up"  %>
+  </div>
+<% end %>
