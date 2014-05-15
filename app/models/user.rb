@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :proposals
   before_save { self.mysnu = mysnu.downcase }
   before_create :create_remember_token
   before_create :create_activation_token

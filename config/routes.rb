@@ -30,8 +30,14 @@ Rails.application.routes.draw do
   match '/forgot_password', to: 'users#forgot_password', via: 'get'
   match '/reset_password', to: 'users#reset_password', via: 'post'
 
+  # Proposals ( 건의사항 )
+  match '/proposal/new', to: 'proposals#new', via: 'get'
+  match '/proposal/:proposal_id/reply', to: 'proposals#reply', via: 'get', as: 'reply_proposal'
+  match '/proposal/:proposal_id/reply', to: 'proposals#update_reply', via: 'post'
+
   resources :users, only: [:index, :create]
   resources :sessions, only: [:create]
+  resources :proposals, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

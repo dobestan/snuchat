@@ -46,13 +46,14 @@ module SessionsHelper
   end
 
   def admin_user
-    unless current_user.admin?
+    if current_user.nil? || !current_user.admin?
       redirect_to root_url
     end
   end
 
   def active_user
-    unless current_user.active?
+    if current_user.nil? || !current_user.active?
+      flash[:error] = "이메일 인증을 완료한 사용자만 이용 가능합니다."
       redirect_to root_url
     end
   end

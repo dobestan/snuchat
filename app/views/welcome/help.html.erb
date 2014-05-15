@@ -1,1 +1,23 @@
 <h1>Help Page</h1>
+
+<h2>기능 제안 및 건의사항</h2>
+<% @proposals.each do |proposal| %>
+  <div>
+    <h3><%= proposal.title  %></h3>
+    <p><%= proposal.content  %></p>
+    <p><%= link_to "reply", reply_proposal_path(proposal_id: proposal.id)  %></p>
+    <% if proposal.answers.any? %>
+      <h4>등록된 답변이 있습니다.</h4>
+      <p><%= proposal.answers.first.title  %></p>
+      <p><%= proposal.answers.first.content  %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>자주 묻는 질문</h2>
+<% @faqs.each do |faq| %>
+  <div>
+    <h3><%= faq.title  %></h3>
+    <p><%= faq.content  %></p>
+  </div>
+<% end %>

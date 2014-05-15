@@ -13,3 +13,11 @@ demo_users.each do |demo_user|
   User.create(demo_user)
 end
 
+faqs = [ { title: "마이스누 아이디가 왜 필요한가요?",
+           content: "서울대학교 동문 인증을 위한 방법입니다."},
+         { title: "개발자는 누구인가요?", 
+           content: "서울대학교 동문입니다." }]
+faqs.each do |faq|
+  Faq.create(faq)
+end
+
