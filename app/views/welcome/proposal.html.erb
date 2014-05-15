@@ -1,0 +1,55 @@
+<section id="faq">
+    <div class="container">
+        <div class="inner-block">
+            <header>
+                <h2>한줄 제안하기</h2>
+                <span class="line"></span>
+            </header>
+
+            <div>
+              <%= form_for :proposal, url: proposals_path do |f|  %>
+                <%= f.text_area :content, class: "form-control" %>
+                <%= f.submit "제안 날리기", class: "btn btn-gray"  %>
+              <% end %>
+            </div>
+
+            <div id="proposal_table">
+            <% @proposals.reverse.each do |proposal| %>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse" + proposal.id.to_s %>">
+                              <%= proposal.content %>
+                              <% if proposal.answers.any? %>
+                                <span class="label label-success pull-right">답변완료</span>
+                              <% else %>
+                                <span class="label label-danger pull-right">미답변</span>
+                              <% end %>
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="<%= "collapse" + proposal.id.to_s  %>" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <% if proposal.answers.any? %>
+                              <%= proposal.answers.first.content  %>
+                            <% else %>
+                              개발자의 답변을 기다리고 있습니다.
+                              <% if current_user.admin? %>
+                                <%= link_to "reply", reply_proposal_path(proposal_id: proposal.id) %>
+                                <%= link_to "delete", delete_proposal_path(proposal_id: proposal.id), method: :delete %>
+                              <% end %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</section>

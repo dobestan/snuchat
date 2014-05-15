@@ -9,7 +9,13 @@ class WelcomeController < ApplicationController
 
   # Help Page
   def help
+  end
+
+  def faq
     @faqs = Faq.all
+  end
+
+  def proposal
     @proposals = Proposal.where(answer: false)
   end
 end

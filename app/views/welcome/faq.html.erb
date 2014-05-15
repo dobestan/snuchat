@@ -1,0 +1,33 @@
+<section id="faq">
+    <div class="container">
+        <div class="inner-block">
+            <header>
+                <h2>자주 묻는 질문들</h2>
+                <span class="line"></span>
+            </header>
+
+            <% @faqs.each do |faq| %>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse" + faq.id.to_s %>">
+                              <%= faq.title %>
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="<%= "collapse" + faq.id.to_s  %>" class="panel-collapse collapse">
+                          <div class="panel-body">
+                              <%= faq.content  %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</section>

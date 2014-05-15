@@ -9,16 +9,16 @@ class ProposalsController < ApplicationController
 
   def create
     @user = current_user
+
     @proposal = Proposal.new(proposal_params)
     @proposal.user_id = @user.id
 
     if @proposal.save
       # Success
-      flash[:success] = "건의사항이 성공적으로 등록되었습니다."
-      redirect_to help_path
+      redirect_to proposal_path
     else
       # Failed
-      render 'new'
+      redirect_to proposal_path
     end
   end
 
@@ -39,11 +39,17 @@ class ProposalsController < ApplicationController
 
     @proposal_relationship = ProposalRelationship.create(proposal_id: @proposal.id,
                                                          answer_id: @answer.id)
-    redirect_to help_path
+    redirect_to proposal_path
+  end
+
+  def destroy
+    @proposal = Proposal.find(params[:proposal_id])
+    @proposal.destroy
+    redirect_to proposal_path
   end
 
   private
     def proposal_params
-      params.require(:proposal).permit(:title, :content)
+      params.require(:proposal).permit(:content)
     end
 end

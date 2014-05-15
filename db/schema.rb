@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 20140515055115) do
 
   create_table "proposals", force: true do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.text     "content"
+    t.string   "content"
     t.boolean  "answer",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"

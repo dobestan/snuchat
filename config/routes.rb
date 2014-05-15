@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   match '/about', to: 'welcome#about', via: 'get'
   match '/help', to: 'welcome#help', via: 'get'
+  match '/faq', to: 'welcome#faq', via: 'get'
+  match '/proposal', to: 'welcome#proposal', via: 'get'
 
   # Session Management
   match '/signup', to: 'users#new', via: 'get'
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
   match '/proposal/new', to: 'proposals#new', via: 'get'
   match '/proposal/:proposal_id/reply', to: 'proposals#reply', via: 'get', as: 'reply_proposal'
   match '/proposal/:proposal_id/reply', to: 'proposals#update_reply', via: 'post'
+  match '/proposal/:proposal_id/delete', to: 'proposals#destroy', via: 'delete', as: 'delete_proposal'
 
   resources :users, only: [:index, :create]
   resources :sessions, only: [:create]

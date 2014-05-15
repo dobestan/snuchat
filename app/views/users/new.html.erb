@@ -1,35 +1,37 @@
-<h1>회원가입</h1>
+<section id="box-sign">
+  <div class="container">
+      <div class="row">
+          <div class="box">
+              <div class="head">
+                  <h6>Create your account</h6>
+              </div>
 
-<% if @user.errors.any? %>
-  <ul>
-  <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg  %></li>
-  <% end %>
-  </ul>
-<% end %>
-
-<%= form_for @user do |f| %>
-  <div>
-  <%= f.label :name  %><br />
-  <%= f.text_field :name  %>
+              <div class="form">
+                  <%= form_for @user do |f| %>
+                      <div class="form-group clearfix">
+                          <div class="col-lg-12">
+                            <%= f.text_field :mysnu, class: "form-control", placeholder: "마이스누 아이디" %>@snu.ac.kr
+                          </div>
+                      </div>
+                      <div class="form-group clearfix">
+                          <div class="col-lg-12">
+                            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                          </div>
+                        </div>
+                      <div class="form-group clearfix">
+                          <div class="col-lg-12">
+                            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>
+                          </div>
+                        </div>
+                      <div class="form-group clearfix">
+                          <div class="col-lg-12">
+                            <%= f.submit "회원가입", class: "btn btn-gray" %>
+                          </div>
+                      </div>
+                    <% end %>
+              </div>
+          </div>
+          <p class="already">이미 스누챗 계정을 가지고 있으신가요??<a href="<%= signin_url  %>">로그인</a></p>
+      </div>
   </div>
-
-  <div>
-  <%= f.label :mysnu  %><br />
-  <%= f.text_field :mysnu  %>@snu.ac.kr
-  </div>
-
-  <div>
-  <%= f.label :password  %><br />
-  <%= f.password_field :password  %>
-  </div>
-
-  <div>
-  <%= f.label :password_confirmation  %><br />
-  <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div>
-    <%= f.submit "Sign Up"  %>
-  </div>
-<% end %>
+</section>

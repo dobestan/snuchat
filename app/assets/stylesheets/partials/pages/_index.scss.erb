@@ -1,5 +1,13 @@
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+    }
+
 .banner {
-	background:url(#{$imagesPath}/banner.png) no-repeat center center; 
+  background:url(<%= asset_path 'banner.png'  %>) no-repeat center center; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -149,7 +157,7 @@
 				height: 100%;
 				opacity: 0;
 
-				@include transition(all .1s linear);
+				@include transition(all, .1s, linear);
 
 				span {
 					left: 40%;
@@ -397,7 +405,7 @@
 			opacity: 0.27;
 			display: inline-block;
 
-			@include transition(all .1s ease-in);
+			@include transition(all, .1s, ease-in);
 
 			&:hover {
 				opacity: 1;

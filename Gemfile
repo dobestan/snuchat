@@ -21,4 +21,9 @@ gem 'unicorn'
 
 gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'better_errors'
+  gem "binding_of_caller"
+end
+
 gem 'debugger', group: [:development, :test]

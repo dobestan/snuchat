@@ -1,15 +1,10 @@
 <h1>Reply to Proposal</h1>
 
 <h2>Original Proposal</h2>
-<%= @proposal.title  %>
 <%= @proposal.content  %>
 
 <h2>Reply</h2>
 <%= form_for :proposal, url: reply_proposal_path do |f| %>
-  <div>
-  <%= f.label :title  %><br />
-  <%= f.text_field :title  %>
-  </div>
 
   <div>
   <%= f.label :content  %><br />
